@@ -15,7 +15,7 @@
             <p><em>To re-authorize or change accounts, you may need to remove the existing token.json file on the server and click the button again.</em></p>
         {% else %}
             <p class="status-pending">Google Calendar is not yet authorized. This is required for the booking system to create events in your calendar.</p>
-            <p><a href="{{ url_for(\'main.authorize_google_calendar\') }}" class="btn-link-style">Authorize Google Calendar</a></p>
+            <p><a href="{{ url_for('main.authorize_google_calendar') }}" class="btn-link-style">Authorize Google Calendar</a></p>
         {% endif %}
     </div>
 
@@ -37,7 +37,7 @@
                                             {% if completed %}
                                                 <span class="status-completed">Completed</span>
                                             {% elif task == "Set Date & Time" and data.phases[phase].get("X Space Link") and data.phases[phase]["X Space Link"] != "[Link or N/A]" %}
-                                                <span class="status-completed">Booked</span> <a href="{{ data.phases[phase][\"X Space Link\"] }}" target="_blank">(View Space)</a>
+                                                <span class="status-completed">Booked</span> <a href="{{ data.phases[phase]['X Space Link'] }}" target="_blank">(View Space)</a>
                                             {% else %}
                                                 <span class="status-pending">Pending</span>
                                             {% endif %}

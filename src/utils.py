@@ -2,16 +2,36 @@ import os
 import re
 import traceback # Added for detailed exception logging
 
+# Define the engagement directory path using an environment variable or a default
+# This makes the path configurable and avoids hardcoding it directly in the function.
+ENGAGEMENT_DIR_PATH = os.getenv("ENGAGEMENT_DIR_PATH", "/home/ubuntu/client_portal_project/client_portal/src/engagements")
+
+# Ensure the engagement directory exists when the module is loaded
+# This is a proactive approach to prevent errors if the directory is missing.
+if not os.path.exists(ENGAGEMENT_DIR_PATH):
+    try:
+        os.makedirs(ENGAGEMENT_DIR_PATH)
+        print(f"Successfully created directory: {ENGAGEMENT_DIR_PATH}")
+    except Exception as e:
+        print(f"Error creating directory {ENGAGEMENT_DIR_PATH}: {e}")
+
 def parse_todo_file(project_name):
     """Parses the todo file for a given project and returns structured status."""
     print(f"--- parse_todo_file START for {project_name} ---")
-    todo_file_path = f"/home/ubuntu/client_portal_project/client_portal/src/engagements/todo_{project_name}.md"
+    todo_file_path = os.path.join(ENGAGEMENT_DIR_PATH, f"todo_{project_name}.md")
     print(f"parse_todo_file: Attempting to parse {todo_file_path}")
     
     if not os.path.exists(todo_file_path):
         print(f"parse_todo_file: File NOT FOUND: {todo_file_path}")
-        return {"error": "Tracking file not found. V_UTILS_LATEST"}
-    print(f"parse_todo_file: File FOUND: {todo_file_path}")
+        # Create the file if it doesn't exist to prevent errors later
+        try:
+            with open(todo_file_path, 'w') as f:
+                f.write(f"# Placeholder for {project_name}\n") # Add some default content
+            print(f"parse_todo_file: Created placeholder file: {todo_file_path}")
+        except Exception as e:
+            print(f"parse_todo_file: Error creating placeholder file {todo_file_path}: {e}")
+            return {"error": f"Tracking file not found and could not be created: {todo_file_path}"}
+        # return {"error": f"Tracking file not found: {todo_file_path}"}
 
     phases = {
         "Phase 1: Initial Contact & Qualification": [],
@@ -27,10 +47,10 @@ def parse_todo_file(project_name):
         with open(todo_file_path, "r", encoding="utf-8") as f:
             for i, line in enumerate(f):
                 line = line.rstrip()
-                print(f"parse_todo_file: Processing line {i+1}: 	is_empty={not line.strip()}, content=\"{line}\"")
+                # print(f"parse_todo_file: Processing line {i+1}: 	is_empty={not line.strip()}, content=\"{line}\"") # Reduced verbosity
                 if line.startswith("### Phase"):
                     current_phase_name = line.strip("# ").strip()
-                    print(f"parse_todo_file: Found phase: {current_phase_name}")
+                    # print(f"parse_todo_file: Found phase: {current_phase_name}")
                     if current_phase_name not in phases:
                         phases[current_phase_name] = [] 
                     continue
@@ -45,9 +65,9 @@ def parse_todo_file(project_name):
                             status = "Completed"
                         elif status_char == "~":
                             status = "Skipped/NA"
-                        print(f"parse_todo_file: Found task: name={task_description}, status={status}")
+                        # print(f"parse_todo_file: Found task: name={task_description}, status={status}")
                         phases[current_phase_name].append({"task": task_description, "status": status})
-        print(f"parse_todo_file: Successfully processed {todo_file_path}")
+        # print(f"parse_todo_file: Successfully processed {todo_file_path}")
                         
     except Exception as e:
         print(f"--- parse_todo_file CRITICAL ERROR for {project_name} ---\nFile: {todo_file_path}\n{e}\n{traceback.format_exc()}\n--- End parse_todo_file CRITICAL ERROR ---")
