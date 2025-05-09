@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Aurora Ventures X Spaces Engagement Portal{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>X Spaces Engagement Login</h2> {# Changed from Client Login #}
+    <form method="POST" action="{{ url_for("main.login") }}"> <!-- Assuming a "main" blueprint and "login" route -->
+        <label for="username">Username (Project Name):</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <input type="submit" value="Login">
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+            {% for category, message in messages %}
+                <p class="flash-{{ category }}">{{ message }}</p>
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}
+

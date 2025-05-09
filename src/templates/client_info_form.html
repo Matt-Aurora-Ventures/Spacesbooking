@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Update Your Information - {{ current_user.username }} - Aurora Ventures X Spaces Engagement Portal{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Update Your Project Information</h2>
+    <p>Please review and update the information below. This helps us ensure we have the most accurate details for your X Space engagement.</p>
+    
+    <form method="POST" action="{{ url_for('main.update_client_info') }}"> {# Assuming a route named 'update_client_info' #}
+        
+        <label for="project_summary">Project Summary (3 lines max):</label>
+        <textarea id="project_summary" name="project_summary" rows="3" placeholder="Enter a brief summary of your project.">{{ client_info.project_summary or '' }}</textarea>
+
+        <label for="project_website">Project Website:</label>
+        <input type="url" id="project_website" name="project_website" value="{{ client_info.project_website or '' }}" placeholder="https://example.com">
+
+        <label for="project_x_social">Project X.com Profile:</label>
+        <input type="url" id="project_x_social" name="project_x_social" value="{{ client_info.project_x_social or '' }}" placeholder="https://x.com/yourproject">
+        
+        {# Add more fields as needed based on the research data points #}
+        {# For example, founder name, founder X, etc. if these are also client-editable #}
+
+        <input type="submit" value="Save Information">
+    </form>
+    
+    <p class="mt-20"><a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a></p>
+</div>
+{% endblock %}
+

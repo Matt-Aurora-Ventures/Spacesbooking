@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Aurora Ventures X Spaces Engagement Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-section text-center">
+        <h2>Admin Dashboard</h2>
+    </div>
+
+    <div class="dashboard-section" id="google-calendar-auth">
+        <h3>Google Calendar Integration</h3>
+        {% if calendar_authed %}
+            <p class="status-completed">Google Calendar is authorized.</p>
+            <p><em>To re-authorize or change accounts, you may need to remove the existing token.json file on the server and click the button again.</em></p>
+        {% else %}
+            <p class="status-pending">Google Calendar is not yet authorized. This is required for the booking system to create events in your calendar.</p>
+            <p><a href="{{ url_for(\'main.authorize_google_calendar\') }}" class="btn-link-style">Authorize Google Calendar</a></p>
+        {% endif %}
+    </div>
+
+    <div class="dashboard-section" id="all-engagements">
+        <h3>All Engagements Overview</h3>
+        {% if all_engagements %}
+            {% for engagement_name, data in all_engagements.items() %}
+                <div class="engagement-summary">
+                    <h4>{{ engagement_name }}</h4>
+                    {% if data.error %}
+                        <p><em>Error loading status: {{ data.error }}</em></p>
+                    {% elif data.phases %}
+                        <ul>
+                            {% for phase, tasks in data.phases.items() %}
+                                <li><strong>{{ phase }}:</strong>
+                                    <ul>
+                                    {% for task, completed in tasks.items() %}
+                                        <li>{{ task }}: 
+                                            {% if completed %}
+                                                <span class="status-completed">Completed</span>
+                                            {% elif task == "Set Date & Time" and data.phases[phase].get("X Space Link") and data.phases[phase]["X Space Link"] != "[Link or N/A]" %}
+                                                <span class="status-completed">Booked</span> <a href="{{ data.phases[phase][\"X Space Link\"] }}" target="_blank">(View Space)</a>
+                                            {% else %}
+                                                <span class="status-pending">Pending</span>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p><em>No phase data found for this engagement.</em></p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No engagement data found.</p>
+        {% endif %}
+    </div>
+
+    <p class="mt-20 text-center"><a href="{{ url_for("main.logout") }}" class="btn-link-style">Logout</a></p>
+</div>
+
+{% endblock %}
+

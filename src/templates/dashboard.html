@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - {{ current_user.username }} - Aurora Ventures X Spaces Engagement Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-section text-center">
+        <h2>Welcome, {{ current_user.project_name }}!</h2>
+    </div>
+    
+    <div class="dashboard-section" id="booking-process-info">
+        <h3>Our Engagement Process & Booking</h3>
+        <p>Here you can find an overview of how we work together for X Spaces engagements. <a href="{{ url_for("main.onboarding_info") }}" class="btn-link-style">Learn More</a></p>
+        
+        {% if calendar_authed %}
+            <p><a href="{{ url_for(\'main.submit_booking_request\') }}" class="btn-link-style">Request a Booking Slot</a></p>
+        {% else %}
+            <p><em>Booking is currently unavailable. The Google Calendar needs to be authorized by the admin.</em></p>
+        {% endif %}
+    </div>
+
+    <div class="dashboard-section" id="your-information">
+        <h3>Your Project Information</h3>
+        <p><strong>Project Name:</strong> {{ client_info.project_name }}</p>
+        <p><strong>Summary:</strong></p>
+        <pre>{{ client_info.project_summary if client_info.project_summary else \'Not provided yet.\' }}</pre>
+        <p><strong>Website:</strong> <a href="{{ client_info.project_website if client_info.project_website else \'#\' }}" target="_blank">{{ client_info.project_website if client_info.project_website else \'Not provided yet.\' }}</a></p>
+        <p><strong>X.com Profile:</strong> <a href="{{ client_info.project_x_social if client_info.project_x_social else \'#\' }}" target="_blank">{{ client_info.project_x_social if client_info.project_x_social else \'Not provided yet.\' }}</a></p>
+        <p><a href="{{ url_for("main.update_client_info") }}" class="btn-link-style">Update Your Information</a></p>
+    </div>
+
+    <div class="dashboard-section" id="focus-topics">
+        <h3>Your Focus Topics for the X Space</h3>
+        <p><strong>Topics/Announcements:</strong></p>
+        <pre>{{ client_info.focus_topics if client_info.focus_topics else \'No specific focus topics provided yet. Use the button below to add them.\' }}</pre>
+        <p><a href="{{ url_for("main.update_focus_topics") }}" class="btn-link-style">Update Focus Topics</a></p>
+    </div>
+
+    <div class="dashboard-section" id="engagement-status-details">
+        <h3>Your Engagement Status</h3>
+        {% if engagement_status and not engagement_status.get("error_message") %}
+            {% for phase_name, tasks in engagement_status.phases.items() %}
+                <h4>{{ phase_name }}</h4>
+                <ul>
+                    {% for task_name, completed in tasks.items() %}
+                        <li>
+                            {{ task_name }}: 
+                            {% if completed %}
+                                <span class="status-completed">Completed</span>
+                            {% else %}
+                                <span class="status-update-pending">Update Pending</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        {% elif engagement_status.get("error_message") %}
+            <p><em>{{ engagement_status.error_message }}</em></p>
+        {% else %}
+            <p><em>Engagement status details are not yet available.</em></p>
+        {% endif %}
+    </div>
+
+    <p class="mt-20 text-center"><a href="{{ url_for("main.logout") }}" class="btn-link-style">Logout</a></p>
+</div>
+
+{% endblock %}
+

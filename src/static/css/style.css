@@ -1,0 +1,357 @@
+/* style.css - Airbnb Inspired Redesign */
+
+/* Base Styles - Retaining Poppins and core structure */
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* Airbnb uses a very clean white or off-white */
+    color: #222222; /* Airbnb primary text color */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    width: 90%; /* More fluid width */
+    margin: 0 auto;
+    max-width: 1120px; /* Common max-width for content */
+    padding: 0 20px;
+}
+
+/* Header - Simplified, Airbnb style */
+header {
+    background-color: #ffffff;
+    padding: 15px 0;
+    border-bottom: 1px solid #ebebeb; /* Subtle border like Airbnb */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    flex-direction: row; /* Horizontal alignment */
+    align-items: center;
+    justify-content: space-between; /* Space out logo and title/nav */
+}
+
+#logo {
+    max-width: 130px; /* Slightly smaller, more refined */
+    height: auto;
+    margin-right: 20px; /* Space between logo and title */
+}
+
+header h1.portal-title {
+    font-family: 'Poppins', sans-serif;
+    color: #222222; /* Dark text for title */
+    margin: 0;
+    font-size: 1.5em; /* More subtle title size */
+    font-weight: 700; /* Bold, but not overly so */
+    line-height: 1.3;
+    text-align: left; /* Align to the left if logo is also left */
+}
+
+header h1.portal-title .line-break {
+    display: block;
+    font-size: 0.85em;
+    font-weight: 600; /* Slightly less bold for subtitle */
+    color: #484848; /* Subtler color for the second line */
+}
+
+/* Main Content - Focus on clean presentation */
+main {
+    padding: 30px 0;
+    background-color: #ffffff;
+}
+
+/* Footer - Minimalist */
+footer {
+    background-color: #f7f7f7; /* Light gray, similar to Airbnb */
+    color: #717171; /* Airbnb footer text color */
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 50px;
+    border-top: 1px solid #ebebeb;
+    font-size: 0.9em;
+}
+
+/* Forms - Airbnb inspired: clean, rounded, prominent call to action */
+.form-container, 
+form { 
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px; /* Airbnb uses rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    max-width: 500px;
+    margin: 40px auto;
+    border: 1px solid #dddddd; /* Lighter border */
+}
+
+form label {
+    font-family: 'Poppins', sans-serif;
+    display: block;
+    margin-bottom: 8px;
+    color: #222222;
+    font-weight: 500; 
+    font-size: 0.95em;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="url"],
+form input[type="date"],
+form select,
+form textarea {
+    font-family: 'Poppins', sans-serif;
+    width: calc(100% - 22px); 
+    padding: 12px 10px;
+    margin-bottom: 20px;
+    border: 1px solid #b0b0b0; /* Slightly more defined input border */
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #222222;
+    font-size: 1em;
+    transition: border-color 0.2s ease-in-out;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+    border-color: #007bff; /* Accent color on focus, can be Aurora's blue */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0,132,255,0.2); /* Focus ring */
+}
+
+form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+form input[type="submit"] {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FF5A5F; /* Airbnb's signature pink/red */
+    /* Or use Aurora's primary color: #1f78d1; */
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.05em;
+    font-weight: 600; 
+    transition: background-color 0.2s ease;
+    width: 100%; /* Full width button */
+}
+
+form input[type="submit"]:hover {
+    background-color: #E00007; /* Darker shade of Airbnb's red */
+    /* Or darker Aurora blue: #1a69b3; */
+}
+
+/* Links - Standard Airbnb link style */
+a {
+    font-family: 'Poppins', sans-serif;
+    color: #007A87; /* Airbnb's teal-ish link color */
+    /* Or use Aurora's purple: #6f42c1; */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-20 { margin-top: 20px; }
+.mb-20 { margin-bottom: 20px; }
+
+/* Dashboard & Admin Dashboard - Card-based, clean sections */
+.dashboard-container, .admin-dashboard-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.dashboard-section, .engagement-summary {
+    background-color: #ffffff;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.08); /* Subtle card shadow */
+}
+
+.dashboard-section h2, .dashboard-section h3, .engagement-summary h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #222222;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: 600;
+    border-bottom: 1px solid #f0f0f0; /* Lighter separator */
+}
+
+.engagement-summary h3 {
+    color: #007A87; /* Link color for engagement titles */
+}
+
+.dashboard-section h4 {
+    font-family: 'Poppins', sans-serif;
+    color: #484848;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.dashboard-section p, .dashboard-section li {
+    font-family: 'Poppins', sans-serif;
+    color: #484848;
+    font-size: 1em;
+    line-height: 1.7;
+}
+
+.dashboard-section p strong {
+    color: #222222;
+    font-weight: 600;
+}
+
+.dashboard-section ul {
+    list-style-type: none; /* Cleaner list style */
+    padding-left: 0;
+}
+
+.dashboard-section ul ul {
+    padding-left: 20px; /* Indent nested lists */
+    list-style-type: disc;
+}
+
+.dashboard-section pre {
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ebebeb;
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #333;
+}
+
+/* Status indicators */
+.status-completed {
+    color: #008A05; /* Green for completed */
+    font-weight: 500;
+}
+.status-pending {
+    color: #FFB400; /* Orange/Yellow for pending */
+    font-weight: 500;
+}
+.status-update-pending {
+    color: #717171; /* Gray for update pending */
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 0 15px;
+    }
+    header h1.portal-title {
+        font-size: 1.3em;
+    }
+    #logo {
+        max-width: 100px;
+    }
+    .form-container, form {
+        width: 90%;
+        padding: 20px;
+    }
+    .dashboard-section h2, .dashboard-section h3, .engagement-summary h3 {
+        font-size: 1.2em;
+    }
+}
+
+/* Onboarding Info Page Specifics - Consistent card style */
+.onboarding-info-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.onboarding-info-container h2 {
+    text-align: center;
+    color: #222222;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+}
+
+/* Flash Messages - Airbnb style alerts */
+.flash-messages {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.flash-messages li {
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95em;
+    border: 1px solid transparent;
+}
+
+.flash-messages .success {
+    background-color: #C8E6C9; /* Light green */
+    color: #2E7D32; /* Dark green text */
+    border-color: #A5D6A7;
+}
+
+.flash-messages .danger {
+    background-color: #FFCDD2; /* Light red */
+    color: #C62828; /* Dark red text */
+    border-color: #EF9A9A;
+}
+
+.flash-messages .info {
+    background-color: #B3E5FC; /* Light blue */
+    color: #0277BD; /* Dark blue text */
+    border-color: #81D4FA;
+}
+
+.flash-messages .warning {
+    background-color: #FFF9C4; /* Light yellow */
+    color: #F57F17; /* Dark yellow/orange text */
+    border-color: #FFF59D;
+}
+
+/* Button for navigation like "Update Your Information" */
+.btn-link-style {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: #f7f7f7;
+    color: #222222;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-link-style:hover {
+    background-color: #ebebeb;
+    border-color: #cccccc;
+    text-decoration: none;
+}
+
+

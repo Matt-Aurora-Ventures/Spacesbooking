@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Engagement Process - Aurora Ventures X Spaces Engagement Portal{% endblock %}
+
+{% block content %}
+<div class="onboarding-info-container">
+    <h2>Our X Spaces Engagement Process</h2>
+    <p>Welcome to the Aurora Ventures X Spaces engagement portal! We\'re excited to collaborate with you. Here’s a general overview of our process from initial contact to post-Space promotion. Your dashboard will reflect the current status of your specific engagement.</p>
+
+    <div class="dashboard-section">
+        <h3>Phase 1: Initial Contact & Qualification</h3>
+        <ul>
+            <li><strong>Target Identification & Initial Data Entry:</strong> We identify potential guests and projects that align with our audience and themes.</li>
+            <li><strong>Pre-Contact Research:</strong> We do our homework to understand your project and recent achievements to ensure a relevant and engaging conversation.</li>
+            <li><strong>Initial Reach Out:</strong> We make first contact, typically via X or Telegram, with a personalized message.</li>
+            <li><strong>Converse & Confirm Interest:</strong> We discuss the possibility of an X Space and confirm your interest and availability.</li>
+        </ul>
+    </div>
+
+    <div class="dashboard-section">
+        <h3>Phase 2: Preparation & Content Creation</h3>
+        <ul>
+            <li><strong>Gather Assets for Canva Graphic:</strong> We\'ll work with you to get your logo, a brief summary of your project, your website, and X.com social links for the promotional graphic.</li>
+            <li><strong>Graphic Creation:</strong> Our team designs a custom graphic for the X Space using your assets and our branding.</li>
+            <li><strong>Founder Research (In-Depth):</strong> We conduct more detailed research to help formulate insightful questions.</li>
+            <li><strong>Question Generation & Formatting:</strong> We draft a set of questions tailored to your project and our audience, referencing our style guide for consistency.</li>
+            <li><strong>Submit Questions for Review:</strong> We send the drafted questions to you for review and approval to ensure accuracy and comfort.</li>
+        </ul>
+    </div>
+
+    <div class="dashboard-section">
+        <h3>Phase 3: Scheduling & Promotion</h3>
+        <ul>
+            <li><strong>Set Date & Time:</strong> We finalize the date and time for the X Space with you.</li>
+            <li><strong>Confirm Graphic with Founder:</strong> We share the promotional graphic with you for final approval.</li>
+            <li><strong>Prepare Initial Promotional Tweet Content:</strong> We draft the initial announcement tweet.</li>
+            <li><strong>Create X Space:</strong> We set up the official X Space on the platform.</li>
+            <li><strong>Confirm with Founder (Final):</strong> We send a final confirmation with all details, including the X Space link.</li>
+            <li><strong>Schedule in Calendar:</strong> We provide an .ics file for you to easily add the event to your calendar.</li>
+            <li><strong>Schedule/Post Initial Promotional Tweet:</strong> The announcement tweet goes live!</li>
+            <li><strong>One-Hour Pre-Space Reminder & Promotion:</strong> We\'ll send out a reminder tweet and post in relevant Telegram channels one hour before the Space goes live.</li>
+        </ul>
+    </div>
+
+    <div class="dashboard-section">
+        <h3>Phase 4: Post-Space Promotion & Follow-up (Updated)</h3>
+        <ul>
+            <li><strong>Post-Space Promotion Tweets:</strong> After the Space, we share a tweet with a video/recording snippet and another tweet linking to the full recording.</li>
+            <li><strong>Create Animated Sound Byte:</strong> An engaging animated sound byte is created from a key moment in the Space (typically 2 days later).</li>
+            <li><strong>Retweet with Sound Byte:</strong> The animated sound byte is shared via a retweet of the original Space announcement or a new promotional tweet.</li>
+            <li><strong>Write & Publish Substack Article:</strong> A recap article or a piece inspired by the Space discussion is written and published on Substack.</li>
+            <li><strong>Submit All Promotional Material to Founder:</strong> We share all these promotional materials (tweets, sound byte, Substack link) with you for your own use and further promotion.</li>
+        </ul>
+    </div>
+
+    <p class="mt-20"><a href="{{ url_for("main.dashboard") }}">Back to Dashboard</a></p>
+
+</div>
+{% endblock %}
+

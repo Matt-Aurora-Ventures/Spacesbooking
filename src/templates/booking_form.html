@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Book a Time Slot - Aurora Ventures X Spaces Engagement Portal{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Book a Time Slot for Your X Space</h2>
+    <p>Please select a preferred date and time for your X Space. Our availability is generally between 7:00 AM and 10:00 PM CST.</p>
+    
+    {# Note: This is a conceptual form. Full calendar/time slot implementation is complex. #}
+    {# For a real implementation, a JavaScript calendar library would be used here. #}
+    <form method="POST" action="{{ url_for("main.submit_booking_request") }}">
+        
+        <label for="booking_date">Preferred Date:</label>
+        <input type="date" id="booking_date" name="booking_date" required>
+
+        <label for="booking_time">Preferred Time (CST):</label>
+        <select id="booking_time" name="booking_time" required>
+            <option value="" disabled selected>Select a time slot</option>
+            {# Generating time slots from 7 AM to 9 PM (assuming 1-hour slots for simplicity) #}
+            {% for hour in range(7, 22) %}
+                <option value="{{ "%02d:00" % hour }}">{{ "%02d:00" % hour }} - {{ "%02d:00" % (hour + 1) }} CST</option>
+            {% endfor %}
+        </select>
+
+        <label for="booking_notes">Notes (Optional):</label>
+        <textarea id="booking_notes" name="booking_notes" rows="3" placeholder="Any additional preferences or notes for this booking?"></textarea>
+
+        <input type="submit" value="Request Booking Slot">
+    </form>
+    
+    <p class="mt-20"><a href="{{ url_for("main.dashboard") }}">Back to Dashboard</a></p>
+</div>
+{% endblock %}
+

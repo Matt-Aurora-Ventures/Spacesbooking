@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Set Focus Topics - {{ current_user.username }} - Aurora Ventures X Spaces Engagement Portal{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Set Your Focus Topics for the X Space</h2>
+    <p>Please let us know if there are any specific topics, announcements, or areas you would particularly like to focus on during our X Space. This will help us tailor the conversation.</p>
+    
+    <form method="POST" action="{{ url_for("main.update_focus_topics") }}">
+        
+        <label for="focus_topics">Focus Topics/Announcements:</label>
+        <textarea id="focus_topics" name="focus_topics" rows="6" placeholder="e.g., Upcoming product launch, recent partnerships, key features of our platform, specific questions you want to address, etc.">{{ client_info.focus_topics or "" }}</textarea>
+
+        <input type="submit" value="Save Focus Topics">
+    </form>
+    
+    <p class="mt-20"><a href="{{ url_for("main.dashboard") }}">Back to Dashboard</a></p>
+</div>
+{% endblock %}
+
